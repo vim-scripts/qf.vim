@@ -1,0 +1,37 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=949
+
+This script is based fully on vimtip #688. It provides commands for manipulating vim's :grep command via grepprg and grepformat without loosing current settings. That is, all this package does is manipulate the settings of vim's grepprg and grepformat variables. Hopefully the package makes it possible to use multiple different progams in conjuctions with vim's built in grep command.  There is very little magic in the script...but it is convenient.
+
+The basic command is :QF which allows any registered quick-fix command to be executed. 
+E.g.  QF <id> <args> <-- finds the program corresponding to "id" in the
+table and executes it with the specified arguments "args"
+e.g. :QF grep foobar *.cpp <-- will grep all cpp files for foobar
+
+Any number of grep like commands can be registered, and ad-hoc commands can be run also. Look at the bottom for the file for the complete list of commands. An look at the top of the file to work out how to register specific commands. Command registrations allows for less typing, nothing more.
+
+QFlid <pattern> <-- will search for pattern in the id-utils database
+e.g QFlid static   <-- will find all lines with the word "static" using GNU
+id-utils
+
+QFgrep <pattern> <files> <-- works just like the grep command
+e.g. :QFgrep static *.cpp <-- will find all lines matching "static" in the .cpp files of the current directory
+
+
+QFrgrep <pattern> <dir> <-- recursive grep
+e.g. :QFrgrep static src  <-- will recursively grep the src directory for all
+files containing static
+
+
+QFlocate <pattern> <-- will search for files in the slocate database
+E.g. :QFlocate pattern <-- will locate all files matching pattern via the
+slocate functionality available on linux and elsewhere
+
+QFfind <args> <-- works just like find
+E.g. QFfind . -name '*.cpp' <-- will find all cpp files under the current
+directory
+
+QFload Allows a saved Quick-fix window which was previously saved to be 
+restored
+E.g. :QFload /tmp/foo <-- will load contents of /tmp/foo into quick-fix buffer assuming /tmp/foo contains the contents of a previously save quick-fix buffer
+
+
